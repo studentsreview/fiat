@@ -1,13 +1,14 @@
 import Head from 'next/head'
+import { Home } from 'modules/home'
 
-const Home = () => (
-	<div>
+const HomePage = () => (
+	<>
 		<Head>
 			<title>Create Next App</title>
 			<link rel="icon" href="/favicon.ico" />
 		</Head>
-		Hi there!
-	</div>
+		<Home />
+	</>
 )
 
-export default Home
+export default HomePage
