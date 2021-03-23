@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Box, Input } from '@chakra-ui/react'
+import { Box, Flex, Icon, Input, Text } from '@chakra-ui/react'
 import Autosuggest from 'react-autosuggest'
+import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'
+import { useRouter } from 'next/router'
 
 import { api } from 'shared/modules/api'
 
@@ -8,16 +10,22 @@ export const Home: React.FC = () => {
 	const [data, setData] = useState<any>({})
 	const [value, setValue] = useState('')
 	const [suggestions, setSuggestions] = useState([])
+
+	const router = useRouter()
+
 	useEffect(() => {
 		api
 			.request(
 				`
         query {
-          teachers(take: 1000) {
+          teachers(semester: "Spring2021", take: 1000) {
             name
           }
 					courses(take: 1000) {
 						name
+						classes(semester: "Spring2021", take: 1) {
+							name
+						}
 					}
         }
       `
@@ -33,19 +41,37 @@ export const Home: React.FC = () => {
 					setSuggestions(
 						data.teachers
 							.filter(({ name }) => name.toLowerCase().includes(value))
+							.map((suggestion) => ({ type: 'TEACHER', ...suggestion }))
 							.concat(
-								data.courses.filter(({ name }) =>
-									name.toLowerCase().includes(value)
-								)
+								data.courses
+									.filter(
+										({ name, classes }) =>
+											name.toLowerCase().includes(value) && classes.length > 0
+									)
+									.map((suggestion) => ({ type: 'COURSE', ...suggestion }))
 							)
 					)
 				}
 				onSuggestionsClearRequested={() => setSuggestions([])}
+				onSuggestionSelected={(_, { suggestion: { name, type } }) => {
+					const prefix = type === 'TEACHER' ? '/teachers/' : '/courses/'
+					router.push(prefix.concat(name))
+				}}
 				getSuggestionValue={({ name }) => name}
-				renderSuggestion={({ name }) => (
-					<Box cursor="pointer" bg="white" p={2}>
-						{name}
-					</Box>
+				renderSuggestion={({ name, type }) => (
+					<Flex
+						direction="row"
+						alignItems="center"
+						cursor="pointer"
+						bg="white"
+						_hover={{ bg: 'green.500', color: 'white' }}
+						p={2}>
+						<Icon
+							as={type === 'TEACHER' ? FaChalkboardTeacher : FaBook}
+							mr={2}
+						/>
+						<Text>{name}</Text>
+					</Flex>
 				)}
 				inputProps={{
 					placeholder: 'Search Teachers and Courses...',
