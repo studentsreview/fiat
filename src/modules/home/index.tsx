@@ -7,15 +7,15 @@ export const Home: React.FC = () => {
 		api
 			.request(
 				`
-      query {
-        reviews(take: 10) {
-          text
-          teacher {
+        query {
+          teachers(take: 1000) {
             name
           }
+					courses(take: 1000) {
+						name
+					}
         }
-      }
-    `
+      `
 			)
 			.then(setData)
 	}, [])
