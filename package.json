@@ -14,6 +14,10 @@
 		"check:fix": "yarn run format && yarn run lint"
 	},
 	"dependencies": {
+		"@chakra-ui/react": "^1.4.1",
+		"@emotion/react": "^11",
+		"@emotion/styled": "^11",
+		"framer-motion": "^4",
 		"graphql": "^15.5.0",
 		"graphql-request": "^3.4.0",
 		"next": "10.0.0",
