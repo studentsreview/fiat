@@ -12,7 +12,7 @@ type AutosuggestSearchProps = Partial<
 	AutosuggestPropsBase<(Teacher | Course) & { type: 'TEACHER' | 'COURSE' }>
 >
 
-const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
+export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
 	const [data, setData] = useState<null | {
 		teachers: Teacher[]
 		courses: Course[]
@@ -64,7 +64,7 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
 			}
 			onSuggestionsClearRequested={() => setSuggestions([])}
 			onSuggestionSelected={(_, { suggestion: { name, type } }) => {
-				const prefix = type === 'TEACHER' ? '/teachers/' : '/courses/'
+				const prefix = type === 'TEACHER' ? '/teacher/' : '/course/'
 				router.push(prefix.concat(name))
 			}}
 			getSuggestionValue={({ name }) => name}
@@ -101,5 +101,3 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
 		/>
 	)
 }
-
-export default AutosuggestSearch
