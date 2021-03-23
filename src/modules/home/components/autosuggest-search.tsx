@@ -65,7 +65,7 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
 			onSuggestionsClearRequested={() => setSuggestions([])}
 			onSuggestionSelected={(_, { suggestion: { name, type } }) => {
 				const prefix = type === 'TEACHER' ? '/teacher/' : '/course/'
-				router.push(prefix.concat(name))
+				router.push(prefix.concat(name.replace(' ', '_')))
 			}}
 			getSuggestionValue={({ name }) => name}
 			renderSuggestion={({ name, type }) => (

@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
 
 	return {
 		paths: courses.map((course) => ({
-			params: { name: course.name },
+			params: { name: course.name.replace(' ', '_') },
 		})),
 		fallback: false,
 	}
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps<
       }
     }
   `,
-		{ name: ctx.params.name }
+		{ name: ctx.params.name.replace('_', ' ') }
 	)
 
 	return {
