@@ -51,12 +51,15 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 					alignItems="center"
 					cursor="pointer"
 					bg="white"
-					color="gray.700"
-					_hover={{ bg: 'purple.600', color: 'white' }}
+					color="pluto.independence.700"
+					_hover={{ bg: 'pluto.independence.200', color: 'white' }}
 					p={2}>
-					<Icon color="black" as={BsHash} mr={4} boxSize={6} />
+					<Icon color="pluto.independence.900" as={BsHash} mr={4} boxSize={6} />
 					<Flex direction="column">
-						<Text fontSize="sm" color="gray.400">
+						<Text
+							fontSize="sm"
+							fontWeight="thin"
+							color="pluto.independence.700">
 							{type.charAt(0).concat(type.substr(1).toLowerCase())}
 						</Text>
 						<Text>{name}</Text>
@@ -83,15 +86,19 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 			renderInputComponent={(inputProps) => (
 				<InputGroup w={500}>
 					<InputLeftElement h="100%" pointerEvents="none">
-						<Icon color="gray.600" as={AiOutlineSearch} boxSize={6} />
+						<Icon
+							color="pluto.independence.600"
+							as={AiOutlineSearch}
+							boxSize={6}
+						/>
 					</InputLeftElement>
 					<Input
 						roundedTop="xl"
 						roundedBottom="none"
 						border="none"
 						bg="white"
-						_placeholder={{ color: 'gray.500' }}
-						color="gray.700"
+						_placeholder={{ color: 'pluto.independence.500' }}
+						color="pluto.independence.700"
 						{...inputProps}
 						size="lg"
 					/>
