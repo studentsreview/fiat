@@ -49,8 +49,6 @@ export const getStaticProps: GetStaticProps<
 		{ name: ctx.params.name.replace(/_/g, ' ') }
 	)
 
-	console.log(course)
-
 	return {
 		props: {
 			teacher,

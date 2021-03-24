@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Box, Flex, Icon, Input, Text } from '@chakra-ui/react'
+import {
+	Box,
+	Flex,
+	Icon,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	Text,
+} from '@chakra-ui/react'
 import Autosuggest, { AutosuggestPropsBase } from 'react-autosuggest'
-import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { BsHash } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 
 import { Teacher } from 'shared/models/teacher'
@@ -75,27 +84,50 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
 					cursor="pointer"
 					bg="white"
 					color="gray.700"
-					_hover={{ bg: 'green.500', color: 'white' }}
+					_hover={{ bg: 'purple.600', color: 'white' }}
 					p={2}>
-					<Icon as={type === 'TEACHER' ? FaChalkboardTeacher : FaBook} mr={2} />
-					<Text>{name}</Text>
+					<Icon color="black" as={BsHash} mr={4} boxSize={6} />
+					<Flex direction="column">
+						<Text fontSize="sm" color="gray.400">
+							{type.charAt(0).concat(type.substr(1).toLowerCase())}
+						</Text>
+						<Text>{name}</Text>
+					</Flex>
 				</Flex>
 			)}
 			inputProps={{
-				placeholder: 'Search Teachers and Courses...',
+				placeholder: 'search teachers and courses...',
 				value,
 				onChange: (_, { newValue }) => setValue(newValue),
 			}}
 			renderSuggestionsContainer={({ containerProps, children }) => (
 				<Box position="relative" {...containerProps}>
-					<Box position="absolute" w={500} maxH={250} overflowY="scroll">
+					<Box
+						position="absolute"
+						roundedBottom="lg"
+						w={500}
+						maxH={250}
+						overflowY="scroll">
 						{children}
 					</Box>
 				</Box>
 			)}
 			renderInputComponent={(inputProps) => (
-				// @ts-ignore
-				<Input w={500} {...inputProps} />
+				<InputGroup w={500}>
+					<InputLeftElement h="100%" pointerEvents="none">
+						<Icon color="gray.600" as={AiOutlineSearch} boxSize={6} />
+					</InputLeftElement>
+					<Input
+						roundedTop="xl"
+						roundedBottom="none"
+						border="none"
+						bg="white"
+						_placeholder={{ color: 'gray.500' }}
+						color="gray.700"
+						{...inputProps}
+						size="lg"
+					/>
+				</InputGroup>
 			)}
 			{...props}
 		/>

@@ -1,8 +1,9 @@
 import { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
+import { FiatTheme } from 'shared/theme'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => (
-	<ChakraProvider>
+	<ChakraProvider theme={FiatTheme}>
 		<Component {...pageProps} />
 	</ChakraProvider>
 )
