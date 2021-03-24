@@ -1,6 +1,5 @@
 const ghpages = require('gh-pages')
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 ghpages.publish(
 	'out',
 	{
