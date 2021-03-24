@@ -9,3 +9,5 @@ yarn.lock
 .prettierignore
 .env.*
 LICENSE
+out/
+gh-pages/
