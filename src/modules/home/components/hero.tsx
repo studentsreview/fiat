@@ -8,9 +8,13 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import { BiPyramid } from 'react-icons/bi'
+import { Course } from 'shared/models/course'
+import { Teacher } from 'shared/models/teacher'
 import { AutosuggestSearch } from './autosuggest-search'
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC<{
+	searchData: ((Teacher | Course) & { type: string })[]
+}> = ({ searchData }) => {
 	console.log('hi')
 
 	return (
@@ -41,10 +45,10 @@ export const Hero: React.FC = () => {
 									lowell database.
 								</Heading>
 								<Text fontSize="2xl" fontWeight="semibold">
-									new and improved.
+									WIP.
 								</Text>
 							</Flex>
-							<AutosuggestSearch />
+							<AutosuggestSearch searchData={searchData} />
 						</Stack>
 						<Stack
 							textAlign="right"

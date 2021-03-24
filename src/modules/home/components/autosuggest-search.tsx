@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
 	Box,
 	Flex,
@@ -15,60 +15,28 @@ import { useRouter } from 'next/router'
 
 import { Teacher } from 'shared/models/teacher'
 import { Course } from 'shared/models/course'
-import { api } from 'shared/modules/api'
 
 type AutosuggestSearchProps = Partial<
 	AutosuggestPropsBase<(Teacher | Course) & { type: 'TEACHER' | 'COURSE' }>
->
+> & {
+	searchData: ((Teacher | Course) & { type: string })[]
+}
 
-export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = (props) => {
-	const [data, setData] = useState<null | {
-		teachers: Teacher[]
-		courses: Course[]
-	}>(null)
+export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
+	searchData,
+	...props
+}) => {
 	const [value, setValue] = useState('')
 	const [suggestions, setSuggestions] = useState([])
 
 	const router = useRouter()
-
-	useEffect(() => {
-		api
-			.request(
-				`
-        query {
-          teachers(semester: "Spring2021", take: 1000) {
-            name
-          }
-					courses(take: 1000) {
-						name
-						classes(semester: "Spring2021", take: 1) {
-							name
-						}
-					}
-        }
-      `
-			)
-			.then(setData)
-	}, [])
 
 	return (
 		<Autosuggest
 			suggestions={suggestions}
 			onSuggestionsFetchRequested={({ value }) =>
 				setSuggestions(
-					data
-						? data.teachers
-								.filter(({ name }) => name.toLowerCase().includes(value))
-								.map((suggestion) => ({ type: 'TEACHER', ...suggestion }))
-								.concat(
-									data.courses
-										.filter(
-											({ name, classes }) =>
-												name.toLowerCase().includes(value) && classes.length > 0
-										)
-										.map((suggestion) => ({ type: 'COURSE', ...suggestion }))
-								)
-						: []
+					searchData.filter(({ name }) => name.toLowerCase().includes(value))
 				)
 			}
 			onSuggestionsClearRequested={() => setSuggestions([])}
