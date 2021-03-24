@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
 
 	return {
 		paths: courses.map((course) => ({
-			params: { name: course.name.replace(' ', '_') },
+			params: { name: course.name.replace(/ /g, '_') },
 		})),
 		fallback: false,
 	}
@@ -29,11 +29,14 @@ export const getStaticProps: GetStaticProps<
 	{ course: Course },
 	{ name: string }
 > = async (ctx) => {
-	const { course } = await api.request(
+	const { course }: { course: Course } = await api.request(
 		`
     query($name: String!) {
       course(name: $name) {
         name
+        department
+        description
+        AtoG
         classes {
           name
           block
@@ -45,7 +48,7 @@ export const getStaticProps: GetStaticProps<
       }
     }
   `,
-		{ name: ctx.params.name.replace('_', ' ') }
+		{ name: ctx.params.name.replace(/_/g, ' ') }
 	)
 
 	return {
