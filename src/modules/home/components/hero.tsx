@@ -18,7 +18,13 @@ export const Hero: React.FC<{
 	console.log('hi')
 
 	return (
-		<Box color="white" position="relative" h="100%" maxH="100vh">
+		<Flex
+			direction="column"
+			color="white"
+			position="relative"
+			minH="100vh"
+			alignItems="center"
+			py={{ base: 8, md: 16 }}>
 			<Box
 				position="absolute"
 				w="100%"
@@ -26,58 +32,58 @@ export const Hero: React.FC<{
 				top={0}
 				left={0}
 				bgGradient="linear(to-b, pluto.steel.700, pluto.steel.600)"
-				clipPath="url(#curve1)"
+				clipPath={{ md: 'url(#curve1)' }}
 			/>
-			<Flex direction="column" w="100%" h="100%" alignItems="center">
-				<Box flexGrow={1} />
-				<Container zIndex={1} maxW={1312}>
-					<Flex
-						direction="row"
-						justifyContent="space-between"
-						alignItems="center">
-						<Stack
-							bg="url(/images/taxi-844.svg)"
-							bgSize="contain"
-							bgRepeat="no-repeat"
-							backgroundPosition="100%">
-							<Flex direction="column">
-								<Heading
-									fontSize="6xl"
-									fontWeight="extrabold"
-									bgGradient="linear(to-r, pluto.crayola.200, pluto.charm.500)"
-									bgClip="text">
-									lowell database.
-								</Heading>
-								<Text fontSize="2xl" fontWeight="semibold">
-									WIP.
-								</Text>
-							</Flex>
-							<AutosuggestSearch searchData={searchData} />
-						</Stack>
-						<Stack
-							textAlign="right"
-							bg="url(/images/taxi-22.svg)"
-							p={50}
-							color="pluto.independence.900"
-							bgSize="contain"
-							bgRepeat="no-repeat"
-							backgroundPosition="center">
-							<Heading fontSize="3xl">data from 2014-2021</Heading>
-							<Heading fontSize="3xl">10,000+ reviews.</Heading>
-							<Heading fontSize="3xl">8,000+ classes.</Heading>
-							<Heading fontSize="3xl">arena seat stats.</Heading>
-						</Stack>
-					</Flex>
-				</Container>
-				<Box flexGrow={2} />
-			</Flex>
+			<Box flexGrow={1} />
+			<Container zIndex={1} maxW={1312}>
+				<Stack
+					direction={{ base: 'column', md: 'row' }}
+					justifyContent="space-between"
+					alignItems={{ base: 'flex-start', md: 'center' }}
+					spacing={8}>
+					<Stack
+						bg="url(/images/taxi-844.svg)"
+						bgSize="contain"
+						bgRepeat="no-repeat"
+						backgroundPosition="100%">
+						<Flex direction="column">
+							<Heading
+								fontSize="6xl"
+								fontWeight="extrabold"
+								bgGradient="linear(to-r, pluto.crayola.200, pluto.charm.600)"
+								bgClip="text">
+								lowell database.
+							</Heading>
+							<Text fontSize="2xl" fontWeight="semibold">
+								WIP.
+							</Text>
+						</Flex>
+						<AutosuggestSearch searchData={searchData} />
+					</Stack>
+					<Stack
+						alignSelf={{ base: 'flex-end', md: null }}
+						textAlign="right"
+						bg="url(/images/taxi-22.svg)"
+						p={50}
+						color="pluto.independence.900"
+						bgSize="contain"
+						bgRepeat="no-repeat"
+						backgroundPosition="center">
+						<Heading fontSize="3xl">data from 2014-2021</Heading>
+						<Heading fontSize="3xl">10,000+ reviews.</Heading>
+						<Heading fontSize="3xl">8,000+ classes.</Heading>
+						<Heading fontSize="3xl">arena seat stats.</Heading>
+					</Stack>
+				</Stack>
+			</Container>
+			<Box flexGrow={2} />
 			<Flex
 				direction="row"
 				alignItems="center"
 				position="absolute"
 				color="pluto.independence.900"
 				bottom="10px"
-				left={10}>
+				left={{ base: 5, md: 10 }}>
 				<Icon as={BiPyramid} mr={2} />
 				<Text fontWeight="bold">fiat scientia.</Text>
 			</Flex>
@@ -85,7 +91,7 @@ export const Hero: React.FC<{
 				position="absolute"
 				color="pluto.independence.900"
 				bottom="10px"
-				right={10}>
+				right={{ base: 5, md: 10 }}>
 				<Text fontWeight="bold">.made by kai chang</Text>
 			</Box>
 			<svg width="0" height="0">
@@ -95,6 +101,6 @@ export const Hero: React.FC<{
 					</clipPath>
 				</defs>
 			</svg>
-		</Box>
+		</Flex>
 	)
 }

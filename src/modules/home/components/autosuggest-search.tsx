@@ -76,7 +76,7 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 					<Box
 						position="absolute"
 						roundedBottom="lg"
-						w={500}
+						w="100%"
 						maxH={250}
 						overflowY="scroll">
 						{children}
@@ -84,7 +84,7 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 				</Box>
 			)}
 			renderInputComponent={(inputProps) => (
-				<InputGroup w={500}>
+				<InputGroup w="100%" maxW={500}>
 					<InputLeftElement h="100%" pointerEvents="none">
 						<Icon
 							color="pluto.independence.600"
