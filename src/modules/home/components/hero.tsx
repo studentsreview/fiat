@@ -5,6 +5,9 @@ import {
 	Heading,
 	Icon,
 	Stack,
+	Stat,
+	StatLabel,
+	StatNumber,
 	Text,
 } from '@chakra-ui/react'
 import { BiPyramid } from 'react-icons/bi'
@@ -68,10 +71,18 @@ export const Hero: React.FC<{
 						bgSize="contain"
 						bgRepeat="no-repeat"
 						backgroundPosition="center">
-						<Heading fontSize="3xl">data from 2014-2021</Heading>
-						<Heading fontSize="3xl">10,000+ reviews.</Heading>
-						<Heading fontSize="3xl">8,000+ classes.</Heading>
-						<Heading fontSize="3xl">arena seat stats.</Heading>
+						<Stat>
+							<StatLabel fontSize="lg">Data sourced from</StatLabel>
+							<StatNumber fontSize="4xl">2014-2021</StatNumber>
+						</Stat>
+						<Stat>
+							<StatLabel fontSize="lg">Reviews</StatLabel>
+							<StatNumber fontSize="4xl">10,000+</StatNumber>
+						</Stat>
+						<Stat>
+							<StatLabel fontSize="lg">Classes</StatLabel>
+							<StatNumber fontSize="4xl">8,000+</StatNumber>
+						</Stat>
 					</Stack>
 				</Stack>
 			</Container>

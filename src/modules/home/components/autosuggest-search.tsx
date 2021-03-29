@@ -72,7 +72,7 @@ export const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 				onChange: (_, { newValue }) => setValue(newValue),
 			}}
 			renderSuggestionsContainer={({ containerProps, children }) => (
-				<Box position="relative" {...containerProps}>
+				<Box zIndex={1} position="relative" {...containerProps}>
 					<Box
 						position="absolute"
 						roundedBottom="lg"
