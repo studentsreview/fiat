@@ -32,7 +32,6 @@ export const Hero: React.FC<{
 				top={0}
 				left={0}
 				bgGradient="linear(to-b, pluto.steel.700, pluto.steel.600)"
-				clipPath={{ md: 'url(#curve1)' }}
 			/>
 			<Box flexGrow={1} />
 			<Container zIndex={1} maxW={1312}>
@@ -94,13 +93,6 @@ export const Hero: React.FC<{
 				right={{ base: 5, md: 10 }}>
 				<Text fontWeight="bold">.made by kai chang</Text>
 			</Box>
-			<svg width="0" height="0">
-				<defs>
-					<clipPath id="curve1" clipPathUnits="objectBoundingBox">
-						<path d="M 0 1 L 0 0 L 1 0 L 1 0.92 c -0.1 -0.2 -0.17 -0.1 -0.28 0.03 c -0.05 0.06 -0.18 -0.06 -0.22 0.05 Z" />
-					</clipPath>
-				</defs>
-			</svg>
 		</Flex>
 	)
 }
