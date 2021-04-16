@@ -54,11 +54,6 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 							</Text>
 						</div>
 					</Row>
-					<style global jsx>{`
-						.react-autosuggest__suggestion:hover {
-							background-color: ${theme.palette.selection};
-						}
-					`}</style>
 				</>
 			)}
 			inputProps={{
@@ -81,6 +76,20 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 						}}>
 						{children}
 					</div>
+					<style global jsx>{`
+						.react-autosuggest__suggestion:hover {
+							background-color: ${theme.palette.selection};
+						}
+
+						li.react-autosuggest__suggestion::before {
+							content: '';
+						}
+
+						.react-autosuggest__suggestions-list,
+						.react-autosuggest__suggestion {
+							margin: 0;
+						}
+					`}</style>
 				</div>
 			)}
 			renderInputComponent={(inputProps) => (

@@ -12,8 +12,13 @@ const Landing: React.FC<{
 		<Header />
 		<Page.Content>
 			<Grid.Container>
-				<Grid>
+				<Grid md={10}>
 					<AutosuggestSearch searchData={searchData} />
+					<style global jsx>{`
+						.react-autosuggest__container {
+							width: 100%;
+						}
+					`}</style>
 				</Grid>
 			</Grid.Container>
 		</Page.Content>
