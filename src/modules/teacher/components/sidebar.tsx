@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Button, Card, Select, Spacer, Table, Text } from '@geist-ui/react'
+import {
+	Button,
+	Card,
+	Select,
+	Spacer,
+	Table,
+	Text,
+	useMediaQuery,
+} from '@geist-ui/react'
 
 import _ from 'lodash'
 
@@ -14,6 +22,7 @@ const Sidebar: React.FC<{
 }> = ({ teacher, sidebarContainerRef }) => {
 	const [semester, setSemester] = useState('')
 	const [top, setTop] = useState(0)
+	const isAboveMd = useMediaQuery('md', { match: 'up' })
 
 	const scrollHandler = useCallback(() => {
 		const containerTop = sidebarContainerRef.current.offsetTop
@@ -55,7 +64,13 @@ const Sidebar: React.FC<{
 	}, [semester, teacher.classes])
 
 	return (
-		<Card shadow style={{ alignSelf: 'start', position: 'relative', top }}>
+		<Card
+			shadow
+			style={{
+				alignSelf: 'start',
+				position: 'relative',
+				top: isAboveMd ? top : 0,
+			}}>
 			<Text h3 style={{ marginBottom: 0 }}>
 				{teacher.name}
 			</Text>

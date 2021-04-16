@@ -16,7 +16,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, ...props }) => {
 
 	let sourceString
 	if (isRMTLegacy) sourceString = 'RateMyTeachers Review'
-	else if (isV1Legacy) sourceString = 'StudentsReview v1 Review'
+	else if (isV1Legacy) sourceString = 'StudentsReview Review'
 
 	return (
 		<Card shadow {...props}>
