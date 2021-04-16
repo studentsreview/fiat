@@ -3,7 +3,6 @@ import { Grid, Page, Text } from '@geist-ui/react'
 import { Teacher } from 'shared/models/teacher'
 
 import Header from 'shared/components/header'
-
 import ReviewCard from './components/review-card'
 import Sidebar from './components/sidebar'
 
