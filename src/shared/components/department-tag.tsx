@@ -23,6 +23,7 @@ const DepartmentTag: React.FC<DepartmentTagProps> = ({
 				'Social Science': 'gold',
 				'Foreign Language': '#e6e6fa',
 			}[department],
+			color: 'black',
 			...style,
 		}}
 		{...props}>
