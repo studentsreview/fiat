@@ -9,12 +9,11 @@ import Sidebar from './components/sidebar'
 
 const Teacher_: React.FC<{
 	teacher: Teacher
-	switchThemes: () => void
-}> = ({ teacher, switchThemes }) => {
+}> = ({ teacher }) => {
 	const sidebarContainerRef = useRef<HTMLDivElement>(null)
 	return (
 		<Page size="large">
-			<Header switchThemes={switchThemes} />
+			<Header />
 			<Page.Content>
 				<Grid.Container gap={6}>
 					<Grid xs={24} md={10}>

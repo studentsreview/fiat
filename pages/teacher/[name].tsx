@@ -5,15 +5,12 @@ import { api } from 'shared/modules/api'
 
 import TeacherMod from 'modules/teacher'
 
-const TeacherPage: NextPage<{ teacher: Teacher; switchThemes: () => void }> = ({
-	teacher,
-	switchThemes,
-}) => (
+const TeacherPage: NextPage<{ teacher: Teacher }> = ({ teacher }) => (
 	<>
 		<Head>
 			<title>{teacher.name}</title>
 		</Head>
-		<TeacherMod teacher={teacher} switchThemes={switchThemes} />
+		<TeacherMod teacher={teacher} />
 	</>
 )
 
