@@ -6,6 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"predeploy": "yarn build && yarn export",
 		"deploy": "cp -r gh-pages/. out && node deploy.js",
 		"export": "next export",
 		"format": "prettier --single-quote --write './**/*'",
