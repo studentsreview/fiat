@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import { Teacher } from 'shared/models/teacher'
 import { api } from 'shared/modules/api'
 
@@ -7,7 +8,14 @@ import TeacherMod from 'modules/teacher'
 const TeacherPage: NextPage<{ teacher: Teacher; switchThemes: () => void }> = ({
 	teacher,
 	switchThemes,
-}) => <TeacherMod teacher={teacher} switchThemes={switchThemes} />
+}) => (
+	<>
+		<Head>
+			<title>{teacher.name}</title>
+		</Head>
+		<TeacherMod teacher={teacher} switchThemes={switchThemes} />
+	</>
+)
 
 export default TeacherPage
 

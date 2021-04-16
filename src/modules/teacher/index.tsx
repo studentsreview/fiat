@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { Grid, Page, Text } from '@geist-ui/react'
-import Head from 'next/head'
 import { Teacher } from 'shared/models/teacher'
 
 import Header from 'shared/components/header'
@@ -16,9 +15,6 @@ const Teacher_: React.FC<{
 	return (
 		<Page size="large">
 			<Header switchThemes={switchThemes} />
-			<Head>
-				<title>{teacher.name}</title>
-			</Head>
 			<Page.Content>
 				<Grid.Container gap={6}>
 					<Grid xs={24} md={10}>
