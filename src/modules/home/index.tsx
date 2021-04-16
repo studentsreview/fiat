@@ -1,8 +1,9 @@
-import { Grid, Page, Text } from '@geist-ui/react'
+import { Grid, Page } from '@geist-ui/react'
 import { Course } from 'shared/models/course'
 import { Teacher } from 'shared/models/teacher'
 
 import Header from 'shared/components/header'
+import AutosuggestSearch from './components/autosuggest-search'
 
 const Landing: React.FC<{
 	searchData: ((Teacher | Course) & { type: string })[]
@@ -12,7 +13,7 @@ const Landing: React.FC<{
 		<Page.Content>
 			<Grid.Container>
 				<Grid>
-					<Text>{JSON.stringify(searchData)}</Text>
+					<AutosuggestSearch searchData={searchData} />
 				</Grid>
 			</Grid.Container>
 		</Page.Content>

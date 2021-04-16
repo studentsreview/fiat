@@ -1,0 +1,8 @@
+li.react-autosuggest__suggestion::before {
+	content: '';
+}
+
+.react-autosuggest__suggestions-list,
+.react-autosuggest__suggestion {
+	margin: 0;
+}
