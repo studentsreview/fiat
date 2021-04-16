@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import { Home } from 'modules/home'
 import { api } from 'shared/modules/api'
 
 const HomePage: NextPage<{ searchData: any }> = ({ searchData }) => (
@@ -9,7 +8,7 @@ const HomePage: NextPage<{ searchData: any }> = ({ searchData }) => (
 			<title>Lowell Database</title>
 			<link rel="icon" href="/favicon.ico" />
 		</Head>
-		<Home searchData={searchData} />
+		{/*	<Home searchData={searchData} /> */}
 	</>
 )
 

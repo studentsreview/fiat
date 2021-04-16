@@ -2,9 +2,12 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Teacher } from 'shared/models/teacher'
 import { api } from 'shared/modules/api'
 
-const TeacherPage: NextPage<{ teacher: Teacher }> = ({ teacher }) => (
-	<div>{JSON.stringify(teacher)}</div>
-)
+import TeacherMod from 'modules/teacher'
+
+const TeacherPage: NextPage<{ teacher: Teacher; switchThemes: () => void }> = ({
+	teacher,
+	switchThemes,
+}) => <TeacherMod teacher={teacher} switchThemes={switchThemes} />
 
 export default TeacherPage
 
@@ -36,11 +39,16 @@ export const getStaticProps: GetStaticProps<
         name
         departments
         semesters
-        classes {
+        classes(take: 9999) {
           name
+          block
+          semester
         }
-        reviews {
+        reviews(take: 9999, timestampSort: DESC) {
+          timestamp
           text
+          rating
+          version
         }
         rating
       }

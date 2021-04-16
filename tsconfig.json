@@ -23,7 +23,8 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"pages/articles/[id].jsx"
+		"pages/articles/[id].jsx",
+		"src/modules/teacher"
 	],
 	"exclude": ["node_modules"]
 }

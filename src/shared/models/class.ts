@@ -7,6 +7,7 @@ export interface Class {
 	code?: string
 	block?: string
 	room?: string
+	semester?: string
 	section?: string
 	seats?: number[]
 	course?: Course

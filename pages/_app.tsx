@@ -1,11 +1,31 @@
-import { AppProps } from 'next/app'
-import { ChakraProvider } from '@chakra-ui/react'
-import { FiatTheme } from 'shared/theme'
+import { useEffect, useState } from 'react'
+import { GeistProvider, CssBaseline } from '@geist-ui/react'
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => (
-	<ChakraProvider theme={FiatTheme}>
-		<Component {...pageProps} />
-	</ChakraProvider>
-)
+const App = ({ Component, pageProps }) => {
+	let defaultThemeType
+	if (typeof window !== 'undefined') {
+		defaultThemeType = localStorage.getItem('theme-type')
+	}
+	if (!defaultThemeType) {
+		defaultThemeType = 'light'
+	}
+	const [themeType, setThemeType] = useState(defaultThemeType)
+	useEffect(() => {
+		localStorage.setItem('theme-type', themeType)
+	}, [themeType])
+
+	const switchThemes = () => {
+		setThemeType((lastThemeType) =>
+			lastThemeType === 'dark' ? 'light' : 'dark'
+		)
+	}
+
+	return (
+		<GeistProvider themeType={themeType}>
+			<CssBaseline />
+			<Component switchThemes={switchThemes} {...pageProps} />
+		</GeistProvider>
+	)
+}
 
 export default App
