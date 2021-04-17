@@ -93,7 +93,9 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 				</div>
 			)}
 			renderInputComponent={(inputProps) => (
-				<Input {...inputProps} size="large" width="100%" />
+				<Input {...inputProps} status="secondary" size="large" width="100%">
+					<Text h3>Search ↴</Text>
+				</Input>
 			)}
 			{...props}
 		/>

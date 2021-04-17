@@ -11,7 +11,7 @@ const Landing: React.FC<{
 	<Page size="large">
 		<Header />
 		<Page.Content>
-			<Grid.Container>
+			<Grid.Container gap={2}>
 				<Grid md={10}>
 					<AutosuggestSearch searchData={searchData} />
 					<style global jsx>{`
@@ -20,6 +20,7 @@ const Landing: React.FC<{
 						}
 					`}</style>
 				</Grid>
+				<Grid md={14}>Hello</Grid>
 			</Grid.Container>
 		</Page.Content>
 	</Page>
