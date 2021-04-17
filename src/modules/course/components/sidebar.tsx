@@ -11,15 +11,19 @@ import {
 } from '@geist-ui/react'
 
 import _ from 'lodash'
-import { Teacher } from 'shared/models/teacher'
-import { formatSemester, formatSemesterRange } from 'shared/utils'
+import { Course } from 'shared/models/course'
+import {
+	formatSemester,
+	formatSemesterRange,
+	semesterValue,
+} from 'shared/utils'
 
 import DepartmentTag from 'shared/components/department-tag'
 
 const Sidebar: React.FC<{
-	teacher: Teacher
+	course: Course
 	sidebarContainerRef: React.MutableRefObject<HTMLDivElement>
-}> = ({ teacher, sidebarContainerRef }) => {
+}> = ({ course, sidebarContainerRef }) => {
 	const [semester, setSemester] = useState('')
 	const [top, setTop] = useState(0)
 	const isAboveMd = useMediaQuery('md', { match: 'up' })
@@ -33,9 +37,19 @@ const Sidebar: React.FC<{
 		}
 	}, [sidebarContainerRef])
 
+	const semesters = useMemo(
+		() =>
+			_.uniq(
+				course.classes
+					.map((class_) => class_.semester)
+					.sort((a, b) => semesterValue(a) - semesterValue(b))
+			),
+		[course]
+	)
+
 	useEffect(() => {
-		setSemester(teacher.semesters[teacher.semesters.length - 1])
-	}, [teacher.semesters])
+		setSemester(semesters[semesters.length - 1])
+	}, [semesters])
 
 	useEffect(() => {
 		window.addEventListener('scroll', scrollHandler)
@@ -43,7 +57,7 @@ const Sidebar: React.FC<{
 	}, [scrollHandler])
 
 	const scheduleData = useMemo(() => {
-		const semesterClasses = teacher.classes.filter(
+		const semesterClasses = course.classes.filter(
 			(_class) => _class.semester === semester
 		)
 		const blocks = _.uniq(
@@ -56,14 +70,20 @@ const Sidebar: React.FC<{
 			classes: semesterClasses
 				.filter((_class) => Number(_class.block) === block)
 				.map((class_, idx) => (
-					<Link href={`/course/${class_.name.replace(/ /g, '_')}`}>
-						<Button key={idx} auto ghost size="mini" type="secondary">
-							{class_.name}
+					<Link href={`/teacher/${class_.teacher.name.replace(/ /g, '_')}`}>
+						<Button
+							key={idx}
+							auto
+							ghost
+							size="mini"
+							type="secondary"
+							style={{ marginRight: 2 }}>
+							{class_.teacher.name}
 						</Button>
 					</Link>
 				)),
 		}))
-	}, [semester, teacher.classes])
+	}, [semester, course.classes])
 
 	return (
 		<Card
@@ -74,24 +94,21 @@ const Sidebar: React.FC<{
 				top: isAboveMd ? top : 0,
 			}}>
 			<Text h3 style={{ marginBottom: 0 }}>
-				{teacher.name}
+				{course.name}
 			</Text>
 			<Text type="secondary" style={{ marginTop: 0 }}>
-				{formatSemesterRange(teacher.semesters)}
+				{formatSemesterRange(semesters)}
 			</Text>
-			{teacher.departments.map((department) => (
-				<DepartmentTag
-					key={department}
-					department={department}
-					style={{ marginRight: 4, marginBottom: 4 }}
-				/>
-			))}
+			<DepartmentTag
+				department={course.department}
+				style={{ marginRight: 4, marginBottom: 4 }}
+			/>
 			<Spacer y={0.5} />
 			<Select
-				initialValue={teacher.semesters[teacher.semesters.length - 1]}
+				initialValue={semesters[semesters.length - 1]}
 				size="large"
 				onChange={(val) => setSemester(val as string)}>
-				{teacher.semesters
+				{semesters
 					.slice()
 					.reverse()
 					.map((semester) => (

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Grid, Page, Row, Text } from '@geist-ui/react'
+import { Grid, Page, Text } from '@geist-ui/react'
 import { Teacher } from 'shared/models/teacher'
 
 import Header from 'shared/components/header'
@@ -15,7 +15,7 @@ const Teacher_: React.FC<{
 			<Header />
 			<Page.Content>
 				<Grid.Container gap={6}>
-					<Grid xs={24} md={10}>
+					<Grid xs={24} md={11}>
 						<div ref={sidebarContainerRef} style={{ width: '100%' }}>
 							<Sidebar
 								sidebarContainerRef={sidebarContainerRef}
@@ -23,23 +23,21 @@ const Teacher_: React.FC<{
 							/>
 						</div>
 					</Grid>
-					<Grid xs={24} md={14} style={{ flexDirection: 'column' }}>
-						<Row style={{ marginBottom: 12 }}>
-							<Text
-								h3
-								style={{ marginTop: 16, marginLeft: 12, marginBottom: 0 }}>
-								{teacher.reviews.length} Review
-								{teacher.reviews.length !== 1 && 's'}
-							</Text>
-						</Row>
+					<Grid xs={24} md={13} style={{ flexDirection: 'column' }}>
+						<Text
+							h3
+							style={{ marginTop: 16, marginLeft: 12, marginBottom: 12 }}>
+							{teacher.reviews.length} Review
+							{teacher.reviews.length !== 1 && 's'}
+						</Text>
 						{teacher.reviews.map((review, idx) => (
-							<Row
+							<div
 								key={idx}
 								style={{
 									marginBottom: teacher.reviews.length - 1 === idx ? 0 : 12,
 								}}>
 								<ReviewCard review={review} />
-							</Row>
+							</div>
 						))}
 					</Grid>
 				</Grid.Container>

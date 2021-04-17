@@ -1,9 +1,17 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import { Course } from 'shared/models/course'
 import { api } from 'shared/modules/api'
 
+import CourseMod from 'modules/course'
+
 const CoursePage: NextPage<{ course: Course }> = ({ course }) => (
-	<div>{JSON.stringify(course)}</div>
+	<>
+		<Head>
+			<title>{course.name}</title>
+		</Head>
+		<CourseMod course={course} />
+	</>
 )
 
 export default CoursePage
@@ -37,7 +45,7 @@ export const getStaticProps: GetStaticProps<
         department
         description
         AtoG
-        classes {
+        classes(take: 9999) {
           name
           block
           semester

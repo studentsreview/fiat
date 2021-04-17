@@ -9,3 +9,7 @@ export const formatSemesterRange = (semesterRange: string[]): string => {
 
 	return `${start} - ${end}`
 }
+export const semesterValue = (semester: string): number => {
+	const match = /(Spring|Fall)(\d{4})/.exec(semester)
+	return Number(match[2]) + (match[1] === 'Spring' ? 0 : 0.5)
+}
