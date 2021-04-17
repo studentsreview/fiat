@@ -38,23 +38,21 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 			}}
 			getSuggestionValue={({ name }) => name}
 			renderSuggestion={({ name, type }) => (
-				<>
-					<Row
-						className="suggestion"
-						align="middle"
-						style={{ cursor: 'pointer', padding: 12 }}>
-						<Hash size={32} />
-						<Spacer y={2} />
-						<div style={{ display: 'flex', flexDirection: 'column' }}>
-							<Text i style={{ margin: 0 }}>
-								{type.charAt(0).concat(type.substr(1).toLowerCase())}
-							</Text>
-							<Text b style={{ margin: 0 }}>
-								{name}
-							</Text>
-						</div>
-					</Row>
-				</>
+				<Row
+					className="suggestion"
+					align="middle"
+					style={{ cursor: 'pointer', padding: 12 }}>
+					<Hash size={32} />
+					<Spacer y={2} />
+					<div style={{ display: 'flex', flexDirection: 'column' }}>
+						<Text i style={{ margin: 0 }}>
+							{type.charAt(0).concat(type.substr(1).toLowerCase())}
+						</Text>
+						<Text b style={{ margin: 0 }}>
+							{name}
+						</Text>
+					</div>
+				</Row>
 			)}
 			inputProps={{
 				placeholder: 'search teachers and courses...',
@@ -77,6 +75,9 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 						{children}
 					</div>
 					<style global jsx>{`
+						.react-autosuggest__suggestion {
+							background-color: white;
+						}
 						.react-autosuggest__suggestion:hover {
 							background-color: ${theme.palette.selection};
 						}
@@ -93,9 +94,7 @@ const AutosuggestSearch: React.FC<AutosuggestSearchProps> = ({
 				</div>
 			)}
 			renderInputComponent={(inputProps) => (
-				<Input {...inputProps} status="secondary" size="large" width="100%">
-					<Text h3>Search ↴</Text>
-				</Input>
+				<Input {...inputProps} status="secondary" size="large" width="100%" />
 			)}
 			{...props}
 		/>
