@@ -43,6 +43,14 @@ const Landing: React.FC<{
 				</Grid>
 			</Grid.Container>
 		</Page.Content>
+		<Page.Footer
+			style={{
+				display: 'flex',
+				flexDirection: 'row',
+				justifyContent: 'flex-end',
+			}}>
+			<Text h5>by kai chang '21</Text>
+		</Page.Footer>
 	</Page>
 )
 
