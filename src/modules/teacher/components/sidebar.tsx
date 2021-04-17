@@ -56,8 +56,8 @@ const Sidebar: React.FC<{
 			classes: semesterClasses
 				.filter((_class) => Number(_class.block) === block)
 				.map((class_, idx) => (
-					<Link href={`/course/${class_.name.replace(/ /g, '_')}`}>
-						<Button key={idx} auto ghost size="mini" type="secondary">
+					<Link key={idx} href={`/course/${class_.name.replace(/ /g, '_')}`}>
+						<Button auto ghost size="mini" type="secondary">
 							{class_.name}
 						</Button>
 					</Link>

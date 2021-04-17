@@ -1,14 +1,6 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import {
-	Button,
-	Card,
-	Select,
-	Spacer,
-	Table,
-	Text,
-	useMediaQuery,
-} from '@geist-ui/react'
+import { Button, Card, Select, Spacer, Table, Text } from '@geist-ui/react'
 
 import _ from 'lodash'
 import { Course } from 'shared/models/course'
@@ -22,20 +14,8 @@ import DepartmentTag from 'shared/components/department-tag'
 
 const Sidebar: React.FC<{
 	course: Course
-	sidebarContainerRef: React.MutableRefObject<HTMLDivElement>
-}> = ({ course, sidebarContainerRef }) => {
+}> = ({ course }) => {
 	const [semester, setSemester] = useState('')
-	const [top, setTop] = useState(0)
-	const isAboveMd = useMediaQuery('md', { match: 'up' })
-
-	const scrollHandler = useCallback(() => {
-		const containerTop = sidebarContainerRef.current.offsetTop
-		if (window.scrollY > containerTop) {
-			setTop(window.scrollY - containerTop + 16)
-		} else {
-			setTop(0)
-		}
-	}, [sidebarContainerRef])
 
 	const semesters = useMemo(
 		() =>
@@ -51,11 +31,6 @@ const Sidebar: React.FC<{
 		setSemester(semesters[semesters.length - 1])
 	}, [semesters])
 
-	useEffect(() => {
-		window.addEventListener('scroll', scrollHandler)
-		return () => window.removeEventListener('scroll', scrollHandler)
-	}, [scrollHandler])
-
 	const scheduleData = useMemo(() => {
 		const semesterClasses = course.classes.filter(
 			(_class) => _class.semester === semester
@@ -70,9 +45,10 @@ const Sidebar: React.FC<{
 			classes: semesterClasses
 				.filter((_class) => Number(_class.block) === block)
 				.map((class_, idx) => (
-					<Link href={`/teacher/${class_.teacher.name.replace(/ /g, '_')}`}>
+					<Link
+						key={idx}
+						href={`/teacher/${class_.teacher.name.replace(/ /g, '_')}`}>
 						<Button
-							key={idx}
 							auto
 							ghost
 							size="mini"
@@ -91,7 +67,6 @@ const Sidebar: React.FC<{
 			style={{
 				alignSelf: 'start',
 				position: 'relative',
-				top: isAboveMd ? top : 0,
 			}}>
 			<Text h3 style={{ marginBottom: 0 }}>
 				{course.name}

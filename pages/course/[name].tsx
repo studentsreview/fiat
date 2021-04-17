@@ -45,6 +45,10 @@ export const getStaticProps: GetStaticProps<
         department
         description
         AtoG
+				length
+				prerequisites {
+					name
+				}
         classes(take: 9999) {
           name
           block

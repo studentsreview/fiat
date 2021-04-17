@@ -5,7 +5,7 @@ export interface Course {
 	name?: string
 	department?: string
 	sectioned?: boolean
-	prerequisites?: string[]
+	prerequisites?: Course[]
 	notes?: string
 	length?: string
 	AtoG?: string
