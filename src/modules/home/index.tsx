@@ -1,4 +1,4 @@
-import { Grid, Page, Spacer, Text } from '@geist-ui/react'
+import { Grid, Link, Page, Spacer, Text } from '@geist-ui/react'
 import { Course } from 'shared/models/course'
 import { Teacher } from 'shared/models/teacher'
 
@@ -49,7 +49,9 @@ const Landing: React.FC<{
 				flexDirection: 'row',
 				justifyContent: 'flex-end',
 			}}>
-			<Text h5>by kai chang '21</Text>
+			<Link href="https://kaijchang.com" target="_blank">
+				<Text h5>by kai chang '21</Text>
+			</Link>
 		</Page.Footer>
 	</Page>
 )
